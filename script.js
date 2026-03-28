@@ -1,31 +1,18 @@
-function volume_sphere() {
-    //Write your code here
-	function volume_sphere() {
-    // Step 1: Get radius value from input
-    let radius = document.getElementById("radius").value;
+function volume_sphere(event) {
+    event.preventDefault(); // stop page reload
 
-    // Step 2: Convert input to number
+    let radius = document.getElementById("radius").value;
     radius = parseFloat(radius);
 
-    // Step 3: Validate input (non-negative number)
     if (isNaN(radius) || radius < 0) {
         document.getElementById("volume").value = "NaN";
-        return false; // prevent form submission
+        return;
     }
 
-    // Step 4: Calculate volume
     let volume = (4 / 3) * Math.PI * Math.pow(radius, 3);
-
-    // Step 5: Round to 4 decimal places
-    volume = volume.toFixed(4);
-
-    // Step 6: Display result
-    document.getElementById("volume").value = volume;
-
-    return false; // prevent page reload
+    document.getElementById("volume").value = volume.toFixed(4);
 }
-	
-  
-} 
 
-window.onload = document.getElementById('MyForm').onsubmit = volume_sphere;
+window.onload = function () {
+    document.getElementById('MyForm').onsubmit = volume_sphere;
+};
